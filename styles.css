@@ -1538,6 +1538,11 @@ textarea {
     padding: 14px 18px;
     justify-content: center;
   }
+
+  .hero-points,
+  .trust-strip {
+    display: none !important;
+  }
 }
 
 @media (max-width: 520px) {
