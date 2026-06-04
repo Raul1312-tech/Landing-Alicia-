@@ -1076,6 +1076,11 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  .hero-points,
+  .trust-strip {
+    display: none;
+  }
+
   .heading-desktop {
     display: none;
   }
