@@ -187,6 +187,10 @@ h3 {
   font-size: 1.35rem;
 }
 
+.heading-mobile {
+  display: none;
+}
+
 p {
   margin: 0;
   color: var(--muted);
@@ -1072,13 +1076,28 @@ textarea {
 }
 
 @media (max-width: 760px) {
+  .heading-desktop {
+    display: none;
+  }
+
+  .heading-mobile {
+    display: inline;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
   .topbar {
+    justify-content: center;
     position: static;
-    padding-top: 20px;
+    gap: 14px;
+    padding-top: 18px;
   }
 
   .topbar::before {
     inset: 0;
+    border-radius: 22px;
   }
 
   .topbar,
@@ -1093,44 +1112,88 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .topbar,
-  .topbar-actions {
-    display: grid;
+  .topbar {
+    padding-bottom: 16px;
   }
 
   .topbar-actions {
-    justify-items: stretch;
+    display: none;
   }
 
   .brand img {
-    width: 188px;
+    width: 168px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .cta-link {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero {
-    padding-top: 32px;
+    gap: 26px;
+    padding-top: 24px;
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 0;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    line-height: 1.5;
   }
 
   h1 {
-    font-size: clamp(2.3rem, 14vw, 3.8rem);
+    font-size: clamp(2.05rem, 10.5vw, 3rem);
+    max-width: 10.5ch;
+    line-height: 0.98;
+    margin-inline: auto;
   }
 
   h2 {
-    font-size: clamp(1.9rem, 10vw, 2.8rem);
+    font-size: clamp(2rem, 9.6vw, 3rem);
     max-width: none;
+    line-height: 0.98;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.64;
+  }
+
+  .hero-lead {
+    margin-top: 18px;
+    max-width: 33ch;
+    font-size: 0.99rem;
+    margin-inline: auto;
   }
 
   .section {
-    padding: 72px 0;
+    padding: 64px 0;
   }
 
   .inline-cta-band {
-    padding: 24px 20px;
-    border-radius: 24px;
+    padding: 26px 20px;
+    gap: 18px;
+    border-radius: 26px;
+    text-align: center;
+  }
+
+  .inline-cta-copy {
+    justify-items: center;
   }
 
   .inline-cta-copy h2 {
     max-width: none;
-    font-size: clamp(1.7rem, 8vw, 2.4rem);
+    font-size: clamp(1.85rem, 8vw, 2.45rem);
   }
 
   .inline-cta-button {
@@ -1139,34 +1202,354 @@ textarea {
   }
 
   .section-dark {
-    padding: 34px 22px;
-    border-radius: 26px;
+    padding: 32px 20px;
+    border-radius: 28px;
+  }
+
+  .section-heading {
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-heading p:last-child,
+  .section-heading-wide > p:last-child,
+  .offer-section .section-heading p:last-child,
+  .emotional-band .section-heading p:last-child {
+    max-width: none;
+  }
+
+  .emotional-band .section-heading h2,
+  .section-heading-wide h2 {
+    font-size: clamp(2.1rem, 11vw, 3.2rem);
+    line-height: 0.98;
   }
 
   .hero-card-caption {
-    position: static;
-    margin: 16px;
+    margin: 0;
+    padding: 20px 18px;
   }
 
   .glass-stat {
-    position: static;
-    margin: 0 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 18px 20px;
+    gap: 12px;
+    border-radius: 20px;
   }
 
-  .section-heading-wide h2 {
-    font-size: clamp(2.1rem, 12vw, 3.5rem);
+  .stat-number {
+    font-size: 2.4rem;
+  }
+
+  .stat-text {
+    max-width: none;
+  }
+
+  .hero-card-caption h2 {
+    font-size: 1.72rem;
+    margin-bottom: 8px;
+  }
+
+  .hero-card-content {
+    gap: 12px;
+    padding: 0 14px;
+    margin-top: 12px;
+  }
+
+  .hero-points {
+    display: grid;
+    gap: 10px;
+    margin-top: 22px;
+    width: 100%;
+    justify-items: center;
+  }
+
+  .hero-points span {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 18px 14px 34px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(28, 42, 47, 0.08);
+    box-shadow: 0 10px 24px rgba(22, 45, 49, 0.06);
+    text-align: center;
+  }
+
+  .hero-points span::before {
+    left: 14px;
+  }
+
+  .hero-actions {
+    gap: 12px;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    justify-content: center;
+    line-height: 1.25;
+  }
+
+  .trust-strip,
+  .pain-grid,
+  .tech-grid {
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+
+  .trust-strip {
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .trust-strip div,
+  .pain-card,
+  .tech-card {
+    scroll-snap-align: none;
+  }
+
+  .trust-strip div {
+    padding: 18px 16px;
+    text-align: center;
+  }
+
+  .trust-strip strong {
+    margin-bottom: 6px;
+  }
+
+  .pain-grid {
+    margin-top: 28px;
+  }
+
+  .pain-card {
+    padding: 22px 20px;
+    text-align: center;
+  }
+
+  .offer-layout,
+  .doctor-layout,
+  .form-wrap {
+    gap: 24px;
+  }
+
+  .offer-list {
+    gap: 4px;
+  }
+
+  .offer-item {
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .offer-number {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+
+  .offer-card {
+    padding: 24px 20px;
+  }
+
+  .price-new {
+    font-size: 2.45rem;
+    white-space: nowrap;
+  }
+
+  .split-copy {
+    gap: 16px;
+  }
+
+  .doctor-section .section-heading-wide {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .doctor-section .section-heading-wide h2 {
+    font-size: clamp(1.95rem, 9.2vw, 2.8rem);
+    max-width: 12ch;
+    margin-inline: auto;
+  }
+
+  .doctor-section .split-media img {
+    aspect-ratio: 0.96;
+    object-position: center 18%;
+  }
+
+  .doctor-section .split-copy {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .credential-list {
+    gap: 10px;
+  }
+
+  .tech-card img {
+    aspect-ratio: 1.16;
+  }
+
+  .technology-section .section-heading-wide,
+  .cases-section .section-heading-wide,
+  .form-intro {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .technology-section .section-heading-wide h2,
+  .cases-section .section-heading-wide h2,
+  .form-intro h2 {
+    max-width: 11ch;
+    margin-inline: auto;
+  }
+
+  .technology-section .section-heading-wide > p:last-child,
+  .cases-section .section-heading-wide > p:last-child,
+  .form-intro > p:last-of-type {
+    max-width: 32ch;
+    margin-inline: auto;
+  }
+
+  .form-benefits {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .tech-copy {
+    padding: 18px 18px 20px;
+    text-align: center;
+  }
+
+  .cases-grid {
+    gap: 18px;
+  }
+
+  .case-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .compare-slider {
+    aspect-ratio: 0.96;
+    margin-bottom: 14px;
+  }
+
+  .compare-chip {
+    top: 12px;
+    padding: 8px 10px;
+    font-size: 0.68rem;
+  }
+
+  .compare-chip-before {
+    left: 12px;
+  }
+
+  .compare-chip-after {
+    right: 12px;
+  }
+
+  .compare-slider::after {
+    right: 12px;
+    bottom: 12px;
+    font-size: 0.68rem;
+  }
+
+  .compare-handle {
+    width: 52px;
+    height: 52px;
+  }
+
+  .form-section {
+    padding-top: 72px;
+    padding-bottom: 120px;
+  }
+
+  .closing-copy {
+    display: grid;
+    gap: 14px;
+  }
+
+  .closing-copy h2 {
+    font-size: clamp(1.95rem, 8.9vw, 2.7rem);
+    max-width: 11ch;
+    margin-inline: auto;
+  }
+
+  .closing-section .closing-copy p {
+    color: rgba(255, 255, 255, 0.84) !important;
+  }
+
+  .closing-section .closing-copy .eyebrow {
+    color: rgba(255, 255, 255, 0.68) !important;
+  }
+
+  .form-intro {
+    gap: 14px;
+    padding-top: 0;
   }
 
   .lead-form,
   .thank-you-card {
-    padding: 24px 18px;
+    padding: 22px 18px;
+  }
+
+  .form-grid {
+    gap: 14px;
+  }
+
+  input,
+  textarea {
+    border-radius: 16px;
+    padding: 15px 16px;
+    border-color: rgba(28, 42, 47, 0.16);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(93, 107, 113, 0.52);
+  }
+
+  .consent {
+    font-size: 0.95rem;
   }
 
   .floating-cta {
     right: 12px;
     left: 12px;
     bottom: 12px;
+    padding: 14px 18px;
     justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand img {
+    width: 154px;
+  }
+
+  h1 {
+    font-size: clamp(1.92rem, 10.4vw, 2.6rem);
+  }
+
+  .hero-card-caption h2 {
+    font-size: 1.58rem;
+  }
+
+  .hero-points span {
+    max-width: none;
   }
 }
 

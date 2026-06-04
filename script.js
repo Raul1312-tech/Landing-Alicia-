@@ -3,7 +3,8 @@ const form = document.querySelector("#lead-form");
 const formNote = document.querySelector("#form-note");
 const compareSliders = document.querySelectorAll("[data-compare]");
 const thankYouUrl = "thank-you.html";
-const leadEndpoint = window.IKIGAI_LEAD_ENDPOINT || "";
+const leadEndpoint = (form && form.dataset.endpoint) || window.IKIGAI_LEAD_ENDPOINT || "";
+const isZapierHook = /hooks\.zapier\.com\/hooks\/catch\//i.test(leadEndpoint);
 
 if (revealElements.length) {
   const revealObserver = new IntersectionObserver(
@@ -64,16 +65,47 @@ if (form) {
 
     if (leadEndpoint) {
       try {
-        const response = await fetch(leadEndpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
+        if (isZapierHook) {
+          const targetName = `zapier-hook-${Date.now()}`;
+          const iframe = document.createElement("iframe");
+          const proxyForm = document.createElement("form");
 
-        if (!response.ok) {
-          throw new Error("Lead endpoint failed");
+          iframe.name = targetName;
+          iframe.style.display = "none";
+          document.body.appendChild(iframe);
+
+          proxyForm.action = leadEndpoint;
+          proxyForm.method = "POST";
+          proxyForm.target = targetName;
+          proxyForm.style.display = "none";
+
+          Object.entries(payload).forEach(([key, value]) => {
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = key;
+            input.value = typeof value === "string" ? value : String(value);
+            proxyForm.appendChild(input);
+          });
+
+          document.body.appendChild(proxyForm);
+          proxyForm.submit();
+
+          window.setTimeout(() => {
+            proxyForm.remove();
+            iframe.remove();
+          }, 4000);
+        } else {
+          const response = await fetch(leadEndpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error("Lead endpoint failed");
+          }
         }
       } catch (error) {
         formNote.textContent =
